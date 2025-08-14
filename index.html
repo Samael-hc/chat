@@ -49,7 +49,6 @@
 </div>
 
 <script>
-    // Preguntas y respuestas correctas
     const preguntas = [
         { q: "¿Cómo me llamo? 🤔", a: "Samuel" },
         { q: "¿Cuál es tu color favorito? 🎨", a: "Azul agua marina" },
@@ -67,12 +66,13 @@
             .trim()
             .toLowerCase()
             .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, ""); // elimina tildes
+            .replace(/[\u0300-\u036f]/g, "");
     }
 
     function mostrarPregunta() {
         document.getElementById("pregunta").innerText = preguntas[indice].q;
         document.getElementById("respuesta").value = "";
+        document.getElementById("respuesta").focus();
     }
 
     function verificar() {
@@ -91,6 +91,8 @@
             }
         } else {
             alert("Respuesta incorrecta, intenta de nuevo 😏");
+            document.getElementById("respuesta").value = "";
+            document.getElementById("respuesta").focus();
         }
     }
 
