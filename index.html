@@ -52,15 +52,23 @@
     // Preguntas y respuestas correctas
     const preguntas = [
         { q: "¿Cómo me llamo? 🤔", a: "Samuel" },
-        { q: "¿Cuál es tu color favorito? 🎨", a: "Azul agua Marina" },
-        { q: "¿Porque comenzamos a hablar? 🏙", a: "Juan nos presento" },
+        { q: "¿Cuál es tu color favorito? 🎨", a: "Azul agua marina" },
+        { q: "¿Por qué comenzamos a hablar? 🏙", a: "Juan nos presento" },
         { q: "¿Qué comida compartimos por primera vez? 🍕🍔", a: "Helado" },
-        { q: "¿Cual de tus mascotas se acerco primero cuando te conoci? 🐶🐱", a: "gatubela" },
+        { q: "¿Cuál de tus mascotas se acercó primero cuando te conocí? 🐶🐱", a: "Gatubela" },
         { q: "¿Qué día de la semana nos vimos por primera vez? 📅", a: "Viernes" },
         { q: "¿Quieres ser mi novia? 💕", a: "Sí" }
     ];
 
     let indice = 0;
+
+    function normalizar(texto) {
+        return texto
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, ""); // elimina tildes
+    }
 
     function mostrarPregunta() {
         document.getElementById("pregunta").innerText = preguntas[indice].q;
@@ -68,10 +76,10 @@
     }
 
     function verificar() {
-        let resp = document.getElementById("respuesta").value.trim();
+        let resp = document.getElementById("respuesta").value;
         let correcta = preguntas[indice].a;
 
-        if (resp.toLowerCase() === correcta.toLowerCase()) {
+        if (normalizar(resp) === normalizar(correcta)) {
             indice++;
             if (indice < preguntas.length) {
                 mostrarPregunta();
