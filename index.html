@@ -11,34 +11,79 @@
             background-color: #ffe6e6;
             padding: 50px;
         }
+        .contenedor {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+        }
         .pregunta {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        input, button {
+            font-size: 1em;
+            padding: 10px;
+            margin-top: 10px;
         }
         button {
-            font-size: 1.2em;
-            padding: 10px 20px;
-            margin: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        .si { background-color: #ff4d4d; color: white; }
-        .no { background-color: #ccc; }
+        .btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <div class="pregunta">¿Quieres ser mi novia? 💕</div>
-    <button class="si" onclick="aceptar()">Sí</button>
-    <button class="no" onclick="rechazar()">No</button>
 
-    <script>
-        function aceptar() {
-            alert("¡Sabía que dirías que sí! ❤️😍");
+<div class="contenedor">
+    <div id="pregunta" class="pregunta"></div>
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+    <br>
+    <button class="btn" onclick="verificar()">Responder</button>
+</div>
+
+<script>
+    // Preguntas y respuestas correctas
+    const preguntas = [
+        { q: "¿Cómo me llamo? 🤔", a: "Samuel" },
+        { q: "¿Cuál es mi color favorito? 🎨", a: "Rojo" },
+        { q: "¿Quieres ser mi novia? 💕", a: "Sí" }
+    ];
+
+    let indice = 0;
+
+    function mostrarPregunta() {
+        document.getElementById("pregunta").innerText = preguntas[indice].q;
+        document.getElementById("respuesta").value = "";
+    }
+
+    function verificar() {
+        let resp = document.getElementById("respuesta").value.trim();
+        let correcta = preguntas[indice].a;
+
+        if (resp.toLowerCase() === correcta.toLowerCase()) {
+            indice++;
+            if (indice < preguntas.length) {
+                mostrarPregunta();
+            } else {
+                alert("¡Sabía que dirías que sí! ❤️😍");
+                document.getElementById("pregunta").innerText = "Gracias por aceptar ❤️";
+                document.getElementById("respuesta").style.display = "none";
+                document.querySelector("button").style.display = "none";
+            }
+        } else {
+            alert("Respuesta incorrecta, intenta de nuevo 😏");
         }
-        function rechazar() {
-            alert("Piénsalo otra vez... 😢");
-        }
-    </script>
+    }
+
+    mostrarPregunta();
+</script>
+
 </body>
 </html>
