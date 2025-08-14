@@ -50,13 +50,15 @@
 
 <script>
     const preguntas = [
-        { q: "¿Cómo me llamo? 🤔", a: "Samuel" },
-        { q: "¿Cuál es tu color favorito? 🎨", a: "Azul agua marina" },
-        { q: "¿Por qué comenzamos a hablar? 🏙", a: "Juan nos presento" },
-        { q: "¿Qué comida compartimos por primera vez? 🍕🍔", a: "Helado" },
-        { q: "¿Cuál de tus mascotas se acercó primero cuando te conocí? 🐶🐱", a: "Gatubela" },
-        { q: "¿Qué día de la semana nos vimos por primera vez? 📅", a: "Viernes" },
-        { q: "¿Quieres ser mi novia? 💕", a: "Sí" }
+        { q: "¿Cómo me llamo? 🤔 ", a: ["Samuel", "Sam", "Samu"] },
+        { q: "¿Qué día de la semana nos vimos por primera vez? 📅", a: ["Viernes"] },
+        { q: "¿Cuál es tu color favorito? 🎨", a: ["Azul agua marina", "Azul"] },
+        { q: "¿Por qué comenzamos a hablar? 🏙", a: ["Juan nos presento", "Juan","Jugo","voleibol","volei"] },
+        { q: "¿Qué comida compartimos por primera vez? 🍕🍔", a: ["Helado", "Postre","Pizza"] },
+        { q: "¿Cuál de tus mascotas se acercó primero cuando te conocí? 🐶🐱", a: ["Gatubela", "La gata","gata"] },
+        { q: "¿Qué cancion sonaba de fondo cuando nos besamos por primera vez? 🎵", a: "Locked Out Of Heaven" },
+        { q: "¿Qué es lo que mas me gusta de ti? 🤔", a: "todo" },
+        { q: "¿Quieres ser mi novia? 💕", a: ["Sí", "Si"] }
     ];
 
     let indice = 0;
@@ -76,10 +78,10 @@
     }
 
     function verificar() {
-        let resp = document.getElementById("respuesta").value;
-        let correcta = preguntas[indice].a;
+        let resp = normalizar(document.getElementById("respuesta").value);
+        let respuestasCorrectas = preguntas[indice].a.map(r => normalizar(r));
 
-        if (normalizar(resp) === normalizar(correcta)) {
+        if (respuestasCorrectas.includes(resp)) {
             indice++;
             if (indice < preguntas.length) {
                 mostrarPregunta();
