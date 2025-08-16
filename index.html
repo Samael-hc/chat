@@ -5,14 +5,13 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pregunta Importante ❤️</title>
+    <title>Nuestra Relación ❤️</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #ffe6e6;
+            background-color: #e6f7ff;
             padding: 50px;
         }
         .contenedor {
@@ -38,7 +37,7 @@
             cursor: pointer;
         }
         .btn {
-            background-color: #ff4d4d;
+            background-color: #0077b6;
             color: white;
         }
     </style>
@@ -54,18 +53,12 @@
 
 <script>
     const preguntas = [
-        { q: "¿Cómo me llamo? 🤔 ", a: ["Samuel", "Sam", "Samu"] },
-        { q: "¿Qué día de la semana nos vimos por primera vez? 📅", a: ["Viernes"] },
-        { q: "¿Cuál es tu color favorito? 🎨", a: ["Azul agua marina", "Azul", "morado","agua marina"] },
-        { q: "¿Por qué comenzamos a hablar? 🏙", a: ["Juan nos presento", "Juan", "Jugo", "voleibol", "volei"] },
-        { q: "¿Qué comida compartimos por primera vez? 🍕🍔", a: ["Helado", "Postre", "Pizza"] },
-        { q: "¿Qué fue lo primero que te regale? 🎁", a: ["Gargantilla", "collar"] },
-        { q: "¿Cuál de tus mascotas se acercó primero cuando te conocí? 🐶🐱", a: ["Gatubela", "La gata", "gata"] },
-        { q: "¿Qué canción sonaba de fondo cuando nos besamos por primera vez? 🎵", a: ["Locked Out Of Heaven"] },
-        { q: "¿Qué es lo que más me gusta de ti? 🤔", a: ["todo"] },
-        { q: "¿Me das un beso? ", a: ["si"] },
-        { q: "¿Cual era el disfras que tenias cuando te visite en halloween? 🎃", a: ["mi Diosa"] },
-        { q: "¿Me permitirias ser tu novio? 💕", a: ["Sí", "Si"] }
+        { q: "¿Te sientes feliz conmigo últimamente? 💙", a: ["si", "sí"] },
+        { q: "¿Crees que aún vale la pena lo nuestro? 🌱", a: ["si", "sí"] },
+        { q: "¿Quieres que sigamos intentándolo juntos? 🤝", a: ["si", "sí"] },
+        { q: "¿Estás dispuesta a que hablemos más de lo que sentimos? 🗣️", a: ["si", "sí"] },
+        { q: "¿Te imaginas un futuro conmigo? ✨", a: ["si", "sí"] },
+        { q: "Entonces... ¿quieres seguir en esta relación conmigo? ❤️", a: ["si", "sí"] }
     ];
 
     let indice = 0;
@@ -93,13 +86,13 @@
             if (indice < preguntas.length) {
                 mostrarPregunta();
             } else {
-                alert("¡Sabía que dirías que sí! ❤️😍");
-                document.getElementById("pregunta").innerText = "Gracias por aceptar ❤️";
+                alert("Gracias por querer seguir conmigo ❤️🥰");
+                document.getElementById("pregunta").innerText = "Me haces muy feliz con tu respuesta 💕";
                 document.getElementById("respuesta").style.display = "none";
                 document.querySelector("button").style.display = "none";
             }
         } else {
-            alert("Respuesta incorrecta, intenta de nuevo 😏");
+            alert("Sé sincera, quiero escuchar lo que realmente sientes 💌");
             document.getElementById("respuesta").value = "";
             document.getElementById("respuesta").focus();
         }
