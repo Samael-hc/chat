@@ -15,7 +15,7 @@
             padding: 50px;
         }
         .contenedor {
-            max-width: 400px;
+            max-width: 500px;
             margin: auto;
             background: white;
             padding: 20px;
@@ -40,6 +40,18 @@
             background-color: #0077b6;
             color: white;
         }
+        .final {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #d63384;
+        }
+        iframe {
+            margin-top: 20px;
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +61,7 @@
     <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
     <br>
     <button class="btn" onclick="verificar()">Responder</button>
+    <div id="final"></div>
 </div>
 
 <script>
@@ -86,10 +99,20 @@
             if (indice < preguntas.length) {
                 mostrarPregunta();
             } else {
-                alert("Gracias por querer seguir conmigo ❤️🥰");
-                document.getElementById("pregunta").innerText = "Me haces muy feliz con tu respuesta 💕";
+                // Final del juego
+                document.getElementById("pregunta").style.display = "none";
                 document.getElementById("respuesta").style.display = "none";
                 document.querySelector("button").style.display = "none";
+
+                document.getElementById("final").innerHTML = `
+                    <div class="final">
+                        ❤️ Solo quiero estar contigo, de ser necesario haría lo mismo que Jinu ❤️
+                    </div>
+                    <iframe src="https://www.youtube.com/embed/fjOeJssZX_Q?si=5p9fbscN2ExMmFTH" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
             }
         } else {
             alert("Sé sincera, quiero escuchar lo que realmente sientes 💌");
