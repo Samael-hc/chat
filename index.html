@@ -24,21 +24,32 @@
         }
         .pregunta {
             font-size: 1.3em;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        input, button {
-            font-size: 1em;
-            padding: 10px;
-            margin-top: 10px;
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
         }
         button {
+            font-size: 1.1em;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: 0.3s;
         }
-        .btn {
-            background-color: #0077b6;
+        .btn-si {
+            background-color: #28a745;
             color: white;
+        }
+        .btn-no {
+            background-color: #dc3545;
+            color: white;
+        }
+        button:hover {
+            transform: scale(1.1);
         }
         .final {
             font-size: 1.4em;
@@ -58,51 +69,37 @@
 
 <div class="contenedor">
     <div id="pregunta" class="pregunta"></div>
-    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
-    <br>
-    <button class="btn" onclick="verificar()">Responder</button>
+    <div class="botones">
+        <button class="btn-si" onclick="responder(true)">Sí 💖</button>
+        <button class="btn-no" onclick="responder(false)">No 💔</button>
+    </div>
     <div id="final"></div>
 </div>
 
 <script>
     const preguntas = [
-        { q: "¿Te sientes feliz conmigo últimamente? 💙", a: ["si", "sí"] },
-        { q: "¿Crees que aún vale la pena lo nuestro? 🌱", a: ["si", "sí"] },
-        { q: "¿Quieres que sigamos intentándolo juntos? 🤝", a: ["si", "sí"] },
-        { q: "¿Estás dispuesta a que hablemos más de lo que sentimos? 🗣️", a: ["si", "sí"] },
-        { q: "¿Te imaginas un futuro conmigo? ✨", a: ["si", "sí"] },
-        { q: "Entonces... ¿quieres seguir en esta relación conmigo? ❤️", a: ["si", "sí"] }
+        "¿Te gusta cómo nos entendemos a pesar de todo? 💙",
+        "¿Sientes que lo nuestro aún tiene cosas lindas por vivir? 🌱",
+        "¿Quieres que sigamos compartiendo momentos juntos? 🤝",
+        "¿Te parece importante que hablemos más de lo que sentimos? 🗣️",
+        "¿Te hace ilusión pensar en lo que podemos construir? ✨",
+        "Entonces... ¿quieres seguir en esta relación conmigo? ❤️"
     ];
 
     let indice = 0;
 
-    function normalizar(texto) {
-        return texto
-            .trim()
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
-    }
-
     function mostrarPregunta() {
-        document.getElementById("pregunta").innerText = preguntas[indice].q;
-        document.getElementById("respuesta").value = "";
-        document.getElementById("respuesta").focus();
+        document.getElementById("pregunta").innerText = preguntas[indice];
     }
 
-    function verificar() {
-        let resp = normalizar(document.getElementById("respuesta").value);
-        let respuestasCorrectas = preguntas[indice].a.map(r => normalizar(r));
-
-        if (respuestasCorrectas.includes(resp)) {
+    function responder(si) {
+        if (si) {
             indice++;
             if (indice < preguntas.length) {
                 mostrarPregunta();
             } else {
-                // Final del juego
                 document.getElementById("pregunta").style.display = "none";
-                document.getElementById("respuesta").style.display = "none";
-                document.querySelector("button").style.display = "none";
+                document.querySelector(".botones").style.display = "none";
 
                 document.getElementById("final").innerHTML = `
                     <div class="final">
@@ -116,8 +113,6 @@
             }
         } else {
             alert("Sé sincera, quiero escuchar lo que realmente sientes 💌");
-            document.getElementById("respuesta").value = "";
-            document.getElementById("respuesta").focus();
         }
     }
 
